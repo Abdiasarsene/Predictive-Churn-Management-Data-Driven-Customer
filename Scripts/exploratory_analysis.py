@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, DBSCAN
 
 # Importinf of dataset after preprocessing
 data_treated = pd.read_csv(r'D:\Projects\IT\Data Science & IA\Customer_segmentation_for_a_Marketing_Campaign\Data\customer.csv')
@@ -66,4 +66,24 @@ plt.title('Visualizing cluters with KMeans')
 plt.xlabel('Target')
 plt.ylabel('Predictors')
 plt.legend5
+plt.show()
+
+# Analyzing with DSBCAN test
+# Convert columns as string
+pca_data.columns = pca_data.columns.astype(str)
+
+# Apply DSCAN test
+dbscan = DBSCAN(eps=0.5, min_samples=3)
+lables = dbscan.fit_predict(pca_data)
+
+# Create new column
+pca_data['Clusters'] =lables
+
+# Graphical visualization
+plt.figure(figsize=(12,5))
+sns.set(style='whitegrid', palette="muted")
+sns.scatterplot(pca_data.iloc[:,0], pca_data[:,0], c=lables)
+plt.title("Clustering DBSCAN")
+plt.xlabel('X')
+plt.ylabel('Y')
 plt.show()
