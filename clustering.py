@@ -78,6 +78,7 @@ plt.plot(range(2,11), silhouette_scores, marker='o', linestyle="--")
 plt.title("Silhouette coefficient Method")
 plt.xlabel( "Number of Clusters")
 plt.ylabel("Silhouette score")
+plt.show()
 
 # ====== APPLYING KMEANS ======
 optimal_k = 3
