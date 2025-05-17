@@ -51,7 +51,14 @@ Customer_segmentation_for_a_Marketing_Campaign/
 
 ![Customer_segmentation](./statics/silhouette.png)
 
+## 🤝 Collaborate With Me
+
+Do you work in education, humanitarian tech, or social impact analytics?  
+Looking to deploy smart dashboards in your organization?
+
+📩 Reach out: [abdiasarsene@gmail.com]  
+🔗 LinkedIn: [Abdias Arsène. Z 📊📈](https://www.linkedin.com/in/abdias-arsene)
+
 ## 📩 Contact
 
-If you have any questions or suggestions, feel free to contact me via GitHub! 😊
-
+If you have any questions or suggestions, feel free to contact me via LinkedIn! 😊
