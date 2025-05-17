@@ -11,7 +11,7 @@ This project aims to segment a company's customers into distinct groups using un
 - **Visualize** the results to interpret the segments.
 - **Propose** marketing recommendations based on the insights.
 
-![Customer_segmentation](./customer.jpg)
+![Customer_segmentation](./statics/centroids.png)
 
 ## 📁 Project Structure
 
@@ -19,9 +19,14 @@ This project aims to segment a company's customers into distinct groups using un
 Customer_segmentation_for_a_Marketing_Campaign/
 │-- data/                  # Contains the datasets used
 │-- notebooks/             # Jupyter notebooks with analyses and visualizations
-│-- src/                   # Python scripts for preprocessing and segmentation, Stores visualizations and segmentation results
-│-- README.md              # Project documentation
+|-- |-- exploratory.ipynb
+|-- |-- models.ipynb          
+│-- models.py             # Python scripts for preprocessing and segmentation, Stores visualizations and segmentation results
+│-- requirements.txt
+|--  README.md            # Project documentation
 ```
+
+![Customer_segmentation](./statics/elbow.png)
 
 ## 🛠️ Technologies and Libraries
 
@@ -34,7 +39,7 @@ Customer_segmentation_for_a_Marketing_Campaign/
 
 1. **Data Preparation**: Cleaning, normalization, and encoding of categorical variables.
 2. **Data Exploration**: Visualization of distributions and correlations.
-3. **Dimensionality Reduction (if necessary)**: PCA to simplify data.
+3. **Dimensionality Reduction**: PCA to simplify data.
 4. **Clustering**: Applying K-Means and testing other methods (DBSCAN, hierarchical clustering).
 5. **Interpretation and Recommendations**: Analysis of segments and tailored marketing strategies.
 
@@ -44,23 +49,7 @@ Customer_segmentation_for_a_Marketing_Campaign/
 - Visualizations of groups and their characteristics.
 - Personalized marketing strategies for each segment.
 
-## 📜 Deliverables
-
-- A **Jupyter notebook** with all analysis and segmentation steps.
-- A **detailed report** explaining the results and recommendations.
-- A **PowerPoint presentation** summarizing key findings.
-
-## 🚀 How to Use This Project?
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/Customer_segmentation_for_a_Marketing_Campaign.git
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run the notebook in `notebooks/` to explore the analysis and results.
+![Customer_segmentation](./statics/silhouette.png)
 
 ## 📩 Contact
 
