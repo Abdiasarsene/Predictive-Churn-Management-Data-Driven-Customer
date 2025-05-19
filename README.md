@@ -17,13 +17,19 @@ This project aims to segment a company's customers into distinct groups using un
 
 ```
 Customer_segmentation_for_a_Marketing_Campaign/
-│-- data/                  # Contains the datasets used
-│-- notebooks/             # Jupyter notebooks with analyses and visualizations
+│-- data/
+|-- |--customer_segmentation.csv                  
+│-- notebooks/
+|-- |-- __init__.py           
 |-- |-- exploratory.ipynb
-|-- |-- models.ipynb          
-│-- models.py             # Python scripts for preprocessing and segmentation, Stores visualizations and segmentation results
+|-- |-- clustering.ipynb
+|-- statics/
+|-- |-- numerous of images files
+|-- __init__.py        
+│-- clustering.py
+|-- .gitignore           
 │-- requirements.txt
-|--  README.md            # Project documentation
+|--  README.md            
 ```
 
 ![Customer_segmentation](./statics/elbow.png)
@@ -40,8 +46,11 @@ Customer_segmentation_for_a_Marketing_Campaign/
 1. **Data Preparation**: Cleaning, normalization, and encoding of categorical variables.
 2. **Data Exploration**: Visualization of distributions and correlations.
 3. **Dimensionality Reduction**: PCA to simplify data.
-4. **Clustering**: Applying K-Means and testing other methods (DBSCAN, hierarchical clustering).
-5. **Interpretation and Recommendations**: Analysis of segments and tailored marketing strategies.
+4. **Choice of Optimal k** : Elbow and Silhouette Coefficient
+5. **Clustering**: Applying K-Means and testing other methods.
+6. **Interpretation and Recommendations**: Analysis of segments and tailored marketing strategies.
+
+![Customer_segmentation](./statics/silhouette.png)
 
 ## 📊 Expected Results
 
@@ -49,7 +58,7 @@ Customer_segmentation_for_a_Marketing_Campaign/
 - Visualizations of groups and their characteristics.
 - Personalized marketing strategies for each segment.
 
-![Customer_segmentation](./statics/silhouette.png)
+![Customer_segmentation](./statics/histogram.png)
 
 ## 🤝 Collaborate With Me
 
