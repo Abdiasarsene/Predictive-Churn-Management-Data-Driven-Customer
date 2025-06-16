@@ -1,5 +1,8 @@
 # Folders
 data/
-
+.ruff_cache/
+mlruns/
+mlartifacts/
 # Files
 .env
+/data
