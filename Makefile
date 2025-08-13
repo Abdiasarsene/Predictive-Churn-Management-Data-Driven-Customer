@@ -9,7 +9,7 @@ mlflow_server :
 # Pipeline Complet d'entraînement
 train :
 	@echo "Lancement du Pipeline Global"
-	@py models.py
+	@py runner.py
 
 # Linting + Formatage
 format : 
@@ -20,3 +20,18 @@ format :
 bentoml :
 	@echo "Modèles packagés via BentoML"
 	@py -m bentoml models list
+
+# Cyclomatic Analysis
+cyclo:
+	@echo CC Analysis
+	@radon mi trainer/ -s
+
+# Code Analysis
+code:
+	@echo "Code Analysis"
+	@bandit -r trainer/ -ll
+
+# Run API
+	runapi:
+	@echo "API Launched"
+	@uvicorn main:app --host 0.0.0.0 --port 8000 --reload

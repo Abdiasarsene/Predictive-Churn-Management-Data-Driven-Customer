@@ -1,10 +1,11 @@
-# Importation des bibliothèques nécessaires
+# Modules Required
 import logging
-from sklearn.impute import KNNImputer, SimpleImputer
-from category_encoders import CatBoostEncoder
-from sklearn.preprocessing import RobustScaler
+import traceback
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from category_encoders import CatBoostEncoder
+from sklearn.preprocessing import RobustScaler
+from sklearn.impute import KNNImputer, SimpleImputer
 
 # ====== LOGGING ======
 logging.basicConfig(level=logging.INFO)
@@ -15,15 +16,15 @@ def get_preprocessing(churn):
     try:
         features = churn.drop(columns=["Churn"])
         
-        # Séparation des features catégorielles et numériques
+        # Separation of cat & num features
         num_cols = features.select_dtypes(include=['int32',"int64","float64"]).columns.tolist()
         cat_cols = features.select_dtypes(include=['object']).columns.tolist()
         
-        # Affichage des colonnes
-        logger.info(f"📊📊 Colonnes numériques : {num_cols}")
-        logger.info(f"📊📊 Colonnes catégorielles : {cat_cols}")
+        # Print columns
+        logger.info(f"📊 Numericals features : {num_cols}")
+        logger.info(f"📊 Categoricals features : {cat_cols}")
         
-        # Prétraitement
+        # Pipeline
         num_transformed = Pipeline([
             ('impute', KNNImputer(n_neighbors=3)),
             ('scaler', RobustScaler())
@@ -38,8 +39,9 @@ def get_preprocessing(churn):
             ('num', num_transformed, num_cols),
             ('cat', cat_transformed, cat_cols)
         ])
-        logger.info("✅✅ Prétraitemnt fini")
+        logger.info("✅ Preprocessing done")
         return preprocessor
     except Exception as e : 
-        logger.error(f"Erreur lors du prétraitment : {e}")
+        logger.error(f"❌ Error Detected : {e}")
+        logger.debug(f"Traceback : {traceback.format_exc()}")
         raise e

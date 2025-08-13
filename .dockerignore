@@ -1,0 +1,24 @@
+# Files
+.dvc
+.git 
+.gitignore
+.dvcignore
+.precommit-config.yaml
+data.dvc
+Makefile
+README.md
+runner.py
+requirements.txt
+Jenkinsfile
+Taskfile.yml
+
+# Folders
+customers_segmentation/
+notebooks/
+statics/
+trainer/
+__pycache__/
+.pytest_cache/
+data/
+statics/
+trainer/

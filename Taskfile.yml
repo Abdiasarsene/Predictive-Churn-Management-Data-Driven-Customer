@@ -1,0 +1,92 @@
+version: "3"
+
+env:
+  COMPOSE_FILE: dcker-compose.yml
+  MLFLOW_TRACKING_URI: http://mlflow:5000
+
+tasks:
+  build:
+    desc: "⚙️ Build docker image"
+    cmds:
+      - docker compose -f $COMPOSE_FILE build
+
+  up:
+    desc: "🚀 Launch all services (MLFLOW, API, Prometheus, Grafana)"
+    cmds:
+      - docker compose -f $COMPOSE_FILE up -d
+
+  down:
+    desc: "🔴 Stop Services"
+    cmds:
+      - docker compose -f $COMPOSE_FILE down
+
+  restart:
+    desc: "🧷 Restart all Services"
+    cmds:
+      - task: down
+      - task: up
+
+  logs:
+    desc: "📃 Check logs"
+    cmds:
+      - docker compose -f $COMPOSE_FILE logs -f --tail=50
+
+  api:
+    desc: "📊 Launch MLflow Server"
+    cmds:
+      - docker compose -f $COMPOSE_FILE up -d mlflow
+
+  prometheus:
+    desc: "🔍 Launch only Prometheus"
+    cmds:
+      - docker compose -f $COMPOSE_FILE up -d prometheus
+
+  grafana:
+    desc: "🚀 Launch Grafana"
+    cmds:
+      - docker compose -f $COMPOSE_FILE up -d grafana
+
+  clean:
+    desc: "🚨 Remove all containers, volumes, images unused"
+    cmds:
+      - docker compose -f $COMPOSE_FILE down -v --remove-orphans
+
+  clean-all:
+    desc: "🚨 Remove all containers, volumes, images unused"
+    cmds:
+      - docker compose -f $COMPOSE_FILE down -v --remove-orphans
+      - docker image prune -f
+
+  status:
+    desc: "↔️ State of containers"
+    cmds:
+      - docker compose -f $COMPOSE_FILE ps
+
+  shell-api:
+    desc: "🖥️ Open up shell in API containers"
+    cmds:
+      - docker comppse -f $COMPOSE_FILE exec api sh
+
+  show-env:
+    desc: "🔎 Show currents environments variables"
+    cmds:
+      - printenv | grep -E "MLFLOW|ENV_MODE|API"
+
+  test:
+    desc: "⚙️ Launch tests (Docker)"
+    deps: [build]
+    cmds:
+    - docker compose -f $COMPOSE_FILE run --rm api pytest
+
+  debug:
+    desc: "🟢 Debug : Containers + Ports"
+    cmds:
+      - docker ps
+      - docker compose -f $COMPOSE_FILE ps
+      - docker compose -f $COMPOSE_FILE logs --tail=30
+
+  reload-env:
+    desc: "🔃 Reload files .env in containers (down + up)"
+    cmds:
+      - task down
+      - task up

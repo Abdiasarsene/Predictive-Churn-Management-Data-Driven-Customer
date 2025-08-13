@@ -3,6 +3,14 @@ data/
 .ruff_cache/
 mlruns/
 mlartifacts/
+__pycache__/
+.pytest_cache/
+test/
+
 # Files
 .env
-/data
+predict.py
+.env.local
+.env.docker
+requirements.txt
+Makefile
