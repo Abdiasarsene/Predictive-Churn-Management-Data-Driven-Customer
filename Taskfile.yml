@@ -1,7 +1,7 @@
 version: "3"
 
 env:
-  COMPOSE_FILE: dcker-compose.yml
+  COMPOSE_FILE: docker-compose.yml
   MLFLOW_TRACKING_URI: http://mlflow:5000
 
 tasks:

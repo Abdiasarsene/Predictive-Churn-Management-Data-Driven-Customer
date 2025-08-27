@@ -1,3 +1,4 @@
+
 # Modules required imported 
 from fastapi import FastAPI, Request
 from prometheus_fastapi_instrumentator import Instrumentator

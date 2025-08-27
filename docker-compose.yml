@@ -1,5 +1,5 @@
 services:
-  # 🟢 MLflow Server
+# 🟢 MLflow Server
   mlflow:
     image: ghcr.io/mlflow/mlflow:v2.12.1
     container_name: mlflow
@@ -12,11 +12,11 @@ services:
     command: 
       mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlflow/mlruns --host 0.0.0.0 --port 5000
 
-  # 🟢 API FastAPI
+# 🟢 API FastAPI
   api:
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: D ockerfile
     container_name: ChurnAPI
     ports:
       - "8000:8000"

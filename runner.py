@@ -4,10 +4,10 @@ import mlflow
 import logging
 import traceback
 from trainer.config import settings
-from trainer.data_loader import load_and_split
+from trainer.loader.data_loader import load_and_split
 from trainer.preprocessing import get_preprocessing
 from trainer.training import train_models
-from trainer.predEvalSave import evaluate_and_predict
+from trainer.evaluation.predEvalSave import evaluate_and_predict
 from trainer.monitor import (
     log_data_info,
     log_preprocess_info,

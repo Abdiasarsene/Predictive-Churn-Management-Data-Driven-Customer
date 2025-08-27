@@ -3,7 +3,7 @@ import logging
 import traceback
 import pandas as pd
 from fastapi import HTTPException
-from .monitor import increment_inference_count
+from ..monitor import increment_inference_count
 
 # ====== LOGGING ======
 logging.basicConfig(level=logging.INFO)

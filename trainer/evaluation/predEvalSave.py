@@ -25,8 +25,6 @@ def evaluate_and_predict(trained_pipeline, x_test, y_test):
             # Predict
             y_pred = model.predict(x_test)
             logger.info('🚀 Prediction done')
-            logger.info(f"🔍 Predicting with: {name} → {type(model)}")
-            logger.info(f"🔍 Pipeline steps: {model.steps}")
             
             # Evaluate
             acc, rec, f1 = evaluate_metrics(y_test, y_pred)
