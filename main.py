@@ -4,7 +4,7 @@ import logging
 
 from api.config import settings
 from api.events import register_startup_event
-from api.routes import  router as app_router
+from api.router.routes import  router as app_router
 from api.monitor import add_monitoring, metrics_middleware
 from api.secure import apply_security_middleware
 

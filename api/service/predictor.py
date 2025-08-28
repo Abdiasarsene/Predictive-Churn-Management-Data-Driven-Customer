@@ -27,7 +27,7 @@ def format_message(predicted_class: int) -> str:
     else:
         response = "Unknown 😩 - Prediction unclear. Please check the input or model output."
 
-    return f"{base_question}\n{response}"
+    return f"{base_question} : {response}"
 
 
 # ====== PREDICTION FUNCTION ======

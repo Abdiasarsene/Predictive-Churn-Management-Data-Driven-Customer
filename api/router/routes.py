@@ -1,11 +1,11 @@
 # Modules required imported
 from fastapi import APIRouter, HTTPException
-from .schema import ChurnData
-from .predictor import make_prediction
-from .events import get_model
+from api.schemas.schema import ChurnData
+from api.service.predictor import make_prediction
+from api.events import get_model
 import logging
 import traceback 
-from .monitor import increment_inference_count
+from api.monitor import increment_inference_count
 
 # ====== LOGGING ======
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +28,7 @@ async def validate_churn_input(data: ChurnData):
     except Exception as e:
         logger.error(f"❌ Error detected : {str(e)}")
         logger.debug(f"🟢 Traceback complete : {traceback.format_exc()}")
-        raise HTTPException(status_code=400, details=f"❌ Validation Error: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"❌ Validation Error: {str(e)}")
 
 # ====== ROUTE OF PREDICTION =====
 @router.post("/predict")
@@ -50,6 +50,6 @@ async def predict_churn(data: ChurnData):
             "Model Used" : model_type
         }
     except Exception as e:
-        logger.eeror(f"❌ Error Detected : {str(e)}")
+        logger.error(f"❌ Error Detected : {str(e)}")
         logger.debug(f"🟢 Complete traceback : {traceback.format_exc()}")
         raise HTTPException(status_code=5000, detail=f"Error of prediction : {str(e)}")

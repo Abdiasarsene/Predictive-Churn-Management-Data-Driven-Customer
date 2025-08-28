@@ -21,9 +21,9 @@ class PreferredCategory(str, Enum):
 # ====== INPUT SCHEMA ======
 class ChurnData(BaseModel):
     cluster: Clusters = Field(..., alias="Clusters")
-    annual_income: float = Field(..., ge=50000, le=500000, alias="Annual_income")
+    annual_income: float = Field(..., ge=50000, le=500000, alias="Annual_Income")
     spending_score: int = Field(..., ge=5, le=200, alias="Spending_Score")
-    visit_frequence: int = Field(..., ge=0, le=12, alias="Visit_Frequence") 
+    visit_frequence: int = Field(..., ge=0, le=12, alias="Visit_Frequency") 
     average_basket: float = Field(..., ge=10, le=326.45, alias="Average_Basket")
     used_discount: UsedDiscount = Field(..., alias="Used_Discount")
     preferred_category: PreferredCategory = Field(..., alias="Preferred_Category")

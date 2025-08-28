@@ -1,0 +1,14 @@
+{
+    "Validated Data":{
+        "Clusters":"Cluster_1",
+        "Annual_Income":120000.0,
+        "Spending_Score":150,
+        "Visit_Frequency":8,
+        "Average_Basket":280.75,
+        "Used_Discount":"Non",
+        "Preferred_Category":"Health",
+        "Satisfaction_Score":4
+    },
+    "Message":"Input Data Matched",
+    "Statut":"Success"
+}
