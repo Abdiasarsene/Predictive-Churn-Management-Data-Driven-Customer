@@ -55,3 +55,14 @@
 * **Airflow DAG** for scheduling and orchestrating ML pipelines
 * Architecture ready for scale-up and production-level deployment
 
+---
+
+## 🏁 Closing Note
+
+This project demonstrates how churn management can move from raw data to a production-ready backend, combining robust MLOps practices with clear business outcomes. Curious minds always dig deeper. The code is here, the vision is clear — the next step is up to you.
+
+---
+
+👤 **Abdias Arsène**  
+*Sr. AI Consultant* 😉
+
