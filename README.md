@@ -7,16 +7,11 @@
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
-
-## 🔥 Hook (≤50 words)
-
 *"Every year, companies lose customers without anticipating churn. This project segments customers, predicts churn, and triggers targeted marketing actions. Use cases: telecom, e-commerce, banking. Why now? Data is massive, and AI makes prediction instant and actionable."*
 
 ---
 
-## 🌟 Vision & Impact
-
-**Goal: Turn customer insights into measurable actions.**
+## 🌟 Goal: Turn customer insights into measurable actions.
 
 * Dynamic segmentation based on real customer behavior
 * Personalized marketing actions → increased Customer Lifetime Value
