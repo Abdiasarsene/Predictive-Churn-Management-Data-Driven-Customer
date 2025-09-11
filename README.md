@@ -33,9 +33,21 @@
 
 ---
 
+## ⚙️ Architecture
+
+![Architecture Diagram](./statics/diagram_churn.png)  
+
+---
+
 ## 📖 Narrative Workflow (Backend/API)
 
 *"Raw customer data is preprocessed using CatBoostEncoder to handle categorical variables. ML models are trained, stored via MLflow, with automatic fallback on BentoML. FastAPI serves as the backend exposing predictions, monitored through Prometheus/Grafana. CI/CD via Jenkins ensures smooth integration and deployment. The final application consuming this API is under development using Flask."*
+
+---
+
+## ⚙️ API Demonstration
+
+![API Demo](./statics/postman_api.png)  
 
 ---
 
