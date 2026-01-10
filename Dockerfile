@@ -14,7 +14,7 @@ RUN pip install poetry
 
 # Install all dependencies
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi
+    && poetry install --without dev --no-root --no-interaction --no-ansi
 
 # Expose API listening port
 EXPOSE 8000

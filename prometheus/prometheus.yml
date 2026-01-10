@@ -1,8 +1,23 @@
 global:
-  scrape_interval: "1m"
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"
 
 scrape_configs:
-  - job_name: "churnprediction"
+  # Scraping the FastAPI API
+  - job_name: "churnprediction_api"
     metrics_path: /metrics
     static_configs:
       - targets: ["api:8000"]
+
+
+  # Scrape example for Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

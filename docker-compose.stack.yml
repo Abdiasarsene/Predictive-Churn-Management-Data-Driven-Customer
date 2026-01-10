@@ -1,0 +1,43 @@
+services:
+# ====== Minio ======
+  minio-tester: 
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: python tests/test_minio_connection.py
+    networks:
+      - model_engine_default
+  
+  # ====== API FastAPI ======
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: churn_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+      - .env.docker
+    volumes:
+      - ./logs:/app/logs
+      - ./mlartifacts:/app/mlartifacts
+      - ./mlruns:/app/mlruns
+      - bentoml_data:/root/bentoml
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/docs')\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  model_engine_default:
+    external: true

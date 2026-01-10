@@ -1,38 +1,46 @@
-# Modules required imported
-from fastapi import FastAPI
+# main.py
 import logging
+from fastapi import FastAPI
+from api.routers.routes import router as predict_router
+from api.utils.secure import apply_security_middleware
+from api.monitors.api_metric.otel_instrumentation import setup_otel
+from api.events.event import register_startup_event
+from api.utils.config import settings
+from api.routers.metrics_router import router as metrics_router
 
-from api.config import settings
-from api.events import register_startup_event
-from api.router.routes import  router as app_router
-from api.monitor import add_monitoring, metrics_middleware
-from api.secure import apply_security_middleware
-
-# ====== SETUP LOGGING ======
+# ====== LOGGER ======
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def create_app() -> FastAPI:
     app = FastAPI(
-        title= settings.api_title,
+        title=settings.api_title,
         version=settings.api_version,
         description=settings.api_description
     )
-    
-    # Middleware Security
+
+    # Middleware sécurité
     apply_security_middleware(app)
-    
-    # Monitoring (Prometheus)
-    add_monitoring(app)
-    app.middleware("http")(metrics_middleware)
-    
-    # Startup event : Model loaded
+    logger.info("🔐 Security middleware applied")
+
+    # Observabilité OTEL
+    setup_otel(app)
+    logger.info("📊 OTEL instrumentation configured")
+
+    # Startup events
     register_startup_event(app)
-    
-    # Routes app
-    app.include_router(app_router)
-    
-    logger.info("✅ FastAPI APP Created and Configured")
+    logger.info("⚡ Startup events registered")
+
+    # Routes
+    app.include_router(predict_router)
+    logger.info("📦 API routes included")
+
+    # Metrics
+    app.include_router(metrics_router)
+    logger.info("📦 Metrics included")
+
+    logger.info("✅ FastAPI application created and fully configured")
     return app
 
+# ====== APP INSTANCE ======
 app = create_app()

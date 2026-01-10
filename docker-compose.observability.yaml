@@ -1,0 +1,116 @@
+services:
+  # ====== Prometheus ======
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus_churn
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./prometheus-data:/prometheus
+    healthcheck:
+      test: ["CMD", "curl","-f","http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      api:
+        condition: service_healthy
+      alertmanager:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ====== Alertmanager ======
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9093/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ====== Grafana ======
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_churn
+    ports:
+      - "3010:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl","-f", "http://localhost:3010/api/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # ====== Elasticsearch ======
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.1
+    container_name: elastic_churn
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD", "curl", "-f","http://localhost:9200/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # ====== Kibana ======
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.1
+    container_name: kibana_churn
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5601/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # ======= Filebeat (logs → Elasticsearch) =======
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.12.1
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./logs:/app/logs:ro
+      - ./filebeat/filebeat.yaml:/usr/share/filebeat/filebeat.yml:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+
+# ====== Volumes ======
+volumes:
+  esdata:
+  bentoml_data:
+  grafana-data:
+  prometheus-data:

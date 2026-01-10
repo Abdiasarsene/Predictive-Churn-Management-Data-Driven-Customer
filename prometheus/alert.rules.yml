@@ -1,0 +1,23 @@
+groups:
+- name: api-alerts
+  rules:
+
+  # API down
+  - alert: APIDown
+    expr: up{job="churnprediction_api"} == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "FastAPI API not available"
+      description: "The API did not respond for more than 2 minutes."
+
+  # API slow response
+  - alert: APISlowResponse
+    expr: http_request_duration_seconds_mean{job="churnprediction_api"} > 1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Slow FastAPI API"
+      description: "Average response time > 1s for 5 minutes."

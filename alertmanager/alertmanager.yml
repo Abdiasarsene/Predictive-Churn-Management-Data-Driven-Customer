@@ -1,0 +1,22 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'alert@ton-domaine.com'
+  smtp_auth_username: 'alert@ton-domaine.com'
+  smtp_auth_password: 'VOTRE_APP_PASSWORD'  # utiliser un App Password Gmail
+  smtp_require_tls: true
+
+route:
+  receiver: 'email-alerts'
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+
+  # Manages alert hierarchy by label
+  group_by: ['job']
+
+receivers:
+  - name: 'email-alerts'
+    email_configs:
+      - to: 'abdiasarsene@gmail.com'
+        send_resolved: true

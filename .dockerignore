@@ -1,24 +1,26 @@
+# Directories
+__pycache__/
+.dvc/
+.pytest_cache/
+.ruff_cache/
+alertmanager/
+architecture/
+ChurnPrediction_API/
+customers_segmentation/
+filebeat/
+logs/
+prometheus/
+statics/
+
 # Files
-.dvc
-.git 
+.coverage
+.env.local
 .gitignore
-.dvcignore
-.precommit-config.yaml
-data.dvc
+.pre-commit-config.yaml
+deploy.sh
+Jenkinsfile
 Makefile
+mypy.ini
 README.md
 runner.py
-requirements.txt
-Jenkinsfile
 Taskfile.yml
-
-# Folders
-customers_segmentation/
-notebooks/
-statics/
-trainer/
-__pycache__/
-.pytest_cache/
-data/
-statics/
-trainer/

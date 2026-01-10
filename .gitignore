@@ -5,12 +5,14 @@ mlruns/
 mlartifacts/
 __pycache__/
 .pytest_cache/
-test/
+prometheus-data/
+ChurnPrediction_API/
+logs/api.log
+ChurnPrediction_API/
+output_api/
 
 # Files
 .env
-predict.py
-.env.local
-.env.docker
-requirements.txt
-Makefile
+docker-compose.minio.yaml
+Taskfile.yml
+Jenkinsfile
