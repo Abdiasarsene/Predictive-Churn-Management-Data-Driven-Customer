@@ -17,3 +17,4 @@ docker-compose.minio.yaml
 Taskfile.yml
 Jenkinsfile
 requirements.txt
+.env.local
