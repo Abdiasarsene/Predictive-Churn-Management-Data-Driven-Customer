@@ -1,6 +1,6 @@
 # server_layer/events/model_manager.py
 from api.models_loaders.mlflow_model_loader import MLflowModelLoader
-from api.models_loaders.models_loader import load_bentoml_model, load_joblib_model
+from api.models_loaders.models_loader import load_joblib_model
 from api.utils.config import settings
 from api.logs.efk_logger import log_event
 from api.monitors.model.model_metrics import model_load_status
@@ -11,8 +11,9 @@ class ModelManager:
         self.model = None
         self.model_type = None
         self.minio_checker = MinIOConnectionChecker()
-        for mt in ["mlflow", "bentoml", "joblib"]:
-            model_load_status.labels(model_type=mt).set(0) 
+        # Initialiser toutes les métriques à 0
+        for mt in ["mlflow", "joblib"]:
+            model_load_status.labels(model_type=mt).set(0)
 
     def validate_connection(self):
         if not self.minio_checker.check_connection():
@@ -23,7 +24,7 @@ class ModelManager:
         # Valide la connexion MinIO avant tout
         self.validate_connection()
 
-        # Fallback MLflow -> BentoML -> Joblib
+        # Fallback MLflow -> Joblib
         try:
             loader = MLflowModelLoader(settings.experiment_name)
             self.model = loader.load_model_by_name(settings.run_name)
@@ -32,27 +33,18 @@ class ModelManager:
         except Exception as e_mlflow:
             log_event("warning", "MLflow load failed", error=str(e_mlflow))
             try:
-                self.model = load_bentoml_model(settings.bentoml_model)
-                self.model_type = "bentoml"
+                self.model = load_joblib_model(settings.joblib_filename)
+                self.model_type = "joblib"
                 model_load_status.labels(model_type=self.model_type).set(1)
-            except Exception as e_bento:
-                log_event("warning", "BentoML load failed", error=str(e_bento))
-                try:
-                    self.model = load_joblib_model(settings.joblib_filename)
-                    self.model_type = "joblib"
-                    model_load_status.labels(model_type=self.model_type).set(1)
-                except Exception as e_joblib:
-                    log_event(
-                        "critical",
-                        "All model loading failed",
-                        mlflow_error=str(e_mlflow),
-                        bentoml_error=str(e_bento),
-                        joblib_error=str(e_joblib)
-                    )
-                    raise RuntimeError("All model loading failed")
+            except Exception as e_joblib:
+                log_event(
+                    "critical",
+                    "All model loading failed",
+                    mlflow_error=str(e_mlflow),
+                    joblib_error=str(e_joblib)
+                )
+                raise RuntimeError("All model loading failed")
 
-        # Mettre à jour les métriques
-        model_load_status.labels(model_type=self.model_type).set(1)
         log_event("info", f"Model loaded ({self.model_type})")
 
     def get_model(self):

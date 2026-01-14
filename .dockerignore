@@ -1,26 +1,23 @@
 # Directories
 __pycache__/
-.dvc/
 .pytest_cache/
 .ruff_cache/
 alertmanager/
 architecture/
 ChurnPrediction_API/
-customers_segmentation/
 filebeat/
-logs/
 prometheus/
 statics/
 
 # Files
-.coverage
-.env.local
 .gitignore
 .pre-commit-config.yaml
+docker-compose.minio.yaml
+docker-compose.stack.yml
+docker-compose.observability.yml
 deploy.sh
-Jenkinsfile
 Makefile
 mypy.ini
 README.md
-runner.py
 Taskfile.yml
+Jenkinsfile

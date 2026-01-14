@@ -1,0 +1,16 @@
+filebeat.inputs:
+  - type: filestream
+    id: api-logs
+    paths:
+      - /var/log/api/api.log
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  index: "api-logs-%{+yyyy.MM.dd}"
+
+setup.template.enabled: true
+setup.ilm.enabled: false
