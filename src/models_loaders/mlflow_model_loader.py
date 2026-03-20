@@ -2,7 +2,7 @@
 import os
 import mlflow
 import logging
-from api.utils.config import settings
+from src.utils.config import settings
 
 # ====== LOGGING ======
 logger = logging.getLogger(__name__)

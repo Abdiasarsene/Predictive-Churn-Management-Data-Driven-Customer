@@ -2,7 +2,7 @@
 import logging
 from minio import Minio
 from minio.error import S3Error
-from api.utils.config import settings
+from src.utils.config import settings
 
 # ====== LOGGING ======
 logger = logging.getLogger(__name__)

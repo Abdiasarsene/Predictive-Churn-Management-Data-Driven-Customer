@@ -1,12 +1,12 @@
 # main.py
 import logging
 from fastapi import FastAPI
-from api.routers.routes import router as predict_router
-from api.utils.secure import apply_security_middleware
-from api.monitors.api_metric.otel_instrumentation import setup_otel
-from api.events.event import register_startup_event
-from api.utils.config import settings
-from api.routers.metrics_router import router as metrics_router
+from src.routers.routes import router as predict_router
+from src.utils.secure import apply_security_middleware
+from src.monitors.api_metric.otel_instrumentation import setup_otel
+from src.events.event import register_startup_event
+from src.utils.config import settings
+from src.routers.metrics_router import router as metrics_router
 
 # ====== LOGGER ======
 logging.basicConfig(level=logging.INFO)

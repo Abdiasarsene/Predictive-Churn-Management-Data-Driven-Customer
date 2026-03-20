@@ -1,7 +1,7 @@
 # tests/test_minio_connection.py
 import logging
 from minio import Minio
-from api.utils.config import Settings
+from src.utils.config import Settings
 
 # ====== LOGGING ======
 logging.basicConfig(level=logging.INFO)

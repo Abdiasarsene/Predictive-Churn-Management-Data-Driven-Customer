@@ -1,13 +1,13 @@
 # api/routers/predict_router.py
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from api.core.data_transformer import normalize_input
-from api.schemas.schema import ChurnData
-from api.services.predictor import make_prediction
-from api.services.output_message import format_message
-from api.events.model_manager import model_manager
-from api.connectors.minio_connection_checker import MinIOConnectionChecker
-from api.logs.efk_logger import log_event
+from src.core.data_transformer import normalize_input
+from src.schemas.schema import ChurnData
+from src.services.predictor import make_prediction
+from src.services.output_message import format_message
+from src.events.model_manager import model_manager
+from src.connectors.minio_connection_checker import MinIOConnectionChecker
+from src.logs.efk_logger import log_event
 
 router = APIRouter()
 

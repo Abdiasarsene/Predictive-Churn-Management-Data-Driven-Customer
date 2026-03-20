@@ -1,7 +1,7 @@
 import s3fs
 import joblib
 import logging
-from api.utils.config import settings
+from src.utils.config import settings
 
 # ====== LOGGING ======
 logging.basicConfig(level=logging.INFO)

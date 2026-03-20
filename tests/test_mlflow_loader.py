@@ -1,6 +1,6 @@
 # tests/test_mlflow_model_loader.py
-from connectors.minio_connection_checker import MinIOConnectionChecker
-from api.models_loaders.mlflow_model_loader import MLflowModelLoader
+from src.connectors.minio_connection_checker import MinIOConnectionChecker
+from src.models_loaders.mlflow_model_loader import MLflowModelLoader
 
 def test_mlflow_model_loading():
     # 1️⃣ Vérifier la connexion MinIO et les préfixes

@@ -5,9 +5,9 @@ import logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from api.utils.minio_connection_checker import check_minio_connection
-from api.models_loaders.models_loader import load_joblib_model, load_bentoml_model
-from models_loaders.mlflow_model_loader import MLflowModelLoader
+from src.utils.minio_connection_checker import check_minio_connection
+from src.models_loaders.models_loader import load_joblib_model, load_bentoml_model
+from src.models_loaders.mlflow_model_loader import MLflowModelLoader
 
 # ===== Logging setup =====
 logging.basicConfig(level=logging.INFO)

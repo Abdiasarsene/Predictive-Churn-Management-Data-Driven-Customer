@@ -1,10 +1,10 @@
 # server_layer/events/model_manager.py
-from api.models_loaders.mlflow_model_loader import MLflowModelLoader
-from api.models_loaders.models_loader import load_joblib_model
-from api.utils.config import settings
-from api.logs.efk_logger import log_event
-from api.monitors.model.model_metrics import model_load_status
-from api.connectors.minio_connection_checker import MinIOConnectionChecker
+from src.models_loaders.mlflow_model_loader import MLflowModelLoader
+from src.models_loaders.models_loader import load_joblib_model
+from src.utils.config import settings
+from src.logs.efk_logger import log_event
+from src.monitors.model.model_metrics import model_load_status
+from src.connectors.minio_connection_checker import MinIOConnectionChecker
 
 class ModelManager:
     def __init__(self):

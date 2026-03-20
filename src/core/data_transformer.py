@@ -1,5 +1,5 @@
 import pandas as pd
-from api.logs.efk_logger import log_event
+from src.logs.efk_logger import log_event
 
 def normalize_input(payload):
     try:

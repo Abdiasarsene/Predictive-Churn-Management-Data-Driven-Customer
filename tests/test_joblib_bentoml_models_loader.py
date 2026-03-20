@@ -1,7 +1,7 @@
 # tests/test_models_loader.py
 import logging
-from connectors.minio_connection_checker import MinIOConnectionChecker
-from api.models_loaders.models_loader import load_joblib_model, load_bentoml_model
+from src.connectors.minio_connection_checker import MinIOConnectionChecker
+from src.models_loaders.models_loader import load_joblib_model, load_bentoml_model
 
 logging.basicConfig(level=logging.INFO)
 

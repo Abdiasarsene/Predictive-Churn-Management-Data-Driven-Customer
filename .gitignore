@@ -10,6 +10,7 @@ ChurnPrediction_API/
 logs/api.log
 ChurnPrediction_API/
 output_api/
+otel-collector-config.yaml/
 
 # Files
 .env

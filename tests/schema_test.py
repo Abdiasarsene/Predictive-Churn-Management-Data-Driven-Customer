@@ -1,4 +1,4 @@
-from api.schemas.schema import ChurnData
+from src.schemas.schema import ChurnData
 
 exemple ={
     "Clusters": "Cluster_0",

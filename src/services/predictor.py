@@ -2,8 +2,8 @@ import time
 import pandas as pd
 import logging
 from fastapi import HTTPException
-from api.monitors.model.model_metrics import prediction_count, prediction_duration
-from api.logs.efk_logger import log_event  # si tu veux centraliser le logging
+from src.monitors.model.model_metrics import prediction_count, prediction_duration
+from src.logs.efk_logger import log_event  # si tu veux centraliser le logging
 
 # ====== LOGGER ======
 logger = logging.getLogger(__name__)

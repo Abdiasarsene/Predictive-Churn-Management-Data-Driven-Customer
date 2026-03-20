@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from api.events.model_manager import model_manager
+from src.events.model_manager import model_manager
 import asyncio
-from api.monitors.api_metric.otel_setup import setup_metrics
+from src.monitors.api_metric.otel_setup import setup_metrics
 
 def register_startup_event(app: FastAPI):
     @app.on_event("startup")
